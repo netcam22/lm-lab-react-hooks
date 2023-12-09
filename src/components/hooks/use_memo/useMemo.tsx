@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 export const MemoExample = () => {
 
@@ -6,7 +6,9 @@ export const MemoExample = () => {
 
 	const [numberObj, setNumberObj] = useState({ input: 0 });
 	
-	const doubleNumber = slowFunction(numberObj.input)
+	const doubleNumber = useMemo(
+		() =>  slowFunction(numberObj.input),
+		[numberObj.input]);
 
 	return (
 		<>
@@ -18,6 +20,8 @@ export const MemoExample = () => {
 		</>
 	);
 };
+
+
 
 function slowFunction(num: number) {
 	console.log('calling slow function... 🐌');
