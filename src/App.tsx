@@ -19,7 +19,7 @@ function App() {
 				</Section>
 
 				<Section>
-					<APICall />
+					<APICall endPoint = "https://jsonplaceholder.typicode.com/todos/1"/>
 				</Section>
 
 				<Section>
