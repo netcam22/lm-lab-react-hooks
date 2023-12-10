@@ -36,7 +36,7 @@ function App() {
 				</Section>
 
 				<Section>
-					<Todo />
+					<Todo endPoint = "https://jsonplaceholder.typicode.com/todos/1"/>
 				</Section>
 
 				<Section>
