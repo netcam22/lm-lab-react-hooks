@@ -4,11 +4,17 @@ interface APICallProps {
     endPoint: string;
 }
 
+export interface TodoResponse {
+	userId: number;
+	id: number;
+	title: string;
+	completed: boolean;
+}
+
 export const Todo:React.FC<APICallProps> = ({endPoint}) => {
-	const todoData = useFetch(endPoint);
-	console.log("this data", todoData);
-	console.log("fetching", todoData.isFetching);
-	console.log("userid", todoData.data?.title);
+
+	const todoData = useFetch<TodoResponse>(endPoint);
+	
 	return (<>
 		<h2>Custom Hook</h2>
 		{todoData.isFetching ? 

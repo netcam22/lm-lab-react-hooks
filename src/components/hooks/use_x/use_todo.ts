@@ -1,19 +1,12 @@
 import { useState, useEffect } from "react";
 import { isError } from '../../../helpers/is_error';
 
-export interface TodoResponse {
-	userId: number;
-	id: number;
-	title: string;
-	completed: boolean;
-}
-
-export interface FetchResponse {
-	data: TodoResponse | null;
+export interface FetchResponse<T> {
+	data: T | null;
     isFetching: boolean;
 }
 
-export const useFetch = (endPoint: string): FetchResponse => {
+export const useFetch = <T>(endPoint: string): FetchResponse<T> => {
 
     const [data, setData] = useState(null);
     const [isFetching, setIsFetching] = useState(true);
