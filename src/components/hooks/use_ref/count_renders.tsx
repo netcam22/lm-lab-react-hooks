@@ -1,8 +1,18 @@
-import { useState } from 'react';
+import { useState, useRef, ChangeEvent } from 'react';
 
 export const CountRenders = () => {
-	const [value, setValue] = useState('');
-	const count = 1;
+	const [value, setValue] = useState("");
+	const count = useRef(0);
+
+	const handleChange = (event: ChangeEvent<HTMLInputElement>)=> {
+		setValue(event.target.value);
+		count.current = count.current + 1;
+	}
+
+	const resetCount = ()=> {
+		setValue("");
+		count.current = 0;
+	}
 
 	return (
 		<>
@@ -11,11 +21,12 @@ export const CountRenders = () => {
 			<input
 				value={value}
 				type='text'
-				onChange={(e) => setValue(e.target.value)}
+				onChange={handleChange}
 			/>
 
 			<p>{value}</p>
-			<p>I have rendered {count} times</p>
+			<p>I have rendered {count.current} times</p>
+			<button onClick={resetCount}>Reset count</button>
 		</>
 	);
 };
