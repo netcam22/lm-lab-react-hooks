@@ -6,8 +6,9 @@ import { Todo } from './components/hooks/use_x/todo';
 import { CountRenders } from './components/hooks/use_ref/count_renders';
 import { Focus } from './components/hooks/use_ref/focus';
 import { CountCats } from './components/hooks/use_state/count_cats';
-// import { TaskApp } from './components/hooks/use_reducer/todo_app';
+import { TaskApp } from './components/hooks/use_reducer/todo_app';
 import { Section } from './components/section';
+import { Cats } from './components/hooks/use_x/cats';
 
 function App() {
 	return (
@@ -19,7 +20,7 @@ function App() {
 				</Section>
 
 				<Section>
-					<APICall />
+					<APICall endPoint = "https://jsonplaceholder.typicode.com/todos/1"/>
 				</Section>
 
 				<Section>
@@ -36,12 +37,13 @@ function App() {
 				</Section>
 
 				<Section>
-					<Todo />
+					<Todo endPoint = "https://jsonplaceholder.typicode.com/todos/1"/>
+					<Cats endPoint = "https://api.thecatapi.com/v1/images/search?limit=16&has_breeds=1&api_key=live_7z9YrvTvX0vWxVWX3X4YlwaaLlPMavr2XgxFb9TuucYnRVzsORry3ScJo6W33Uft"/>
 				</Section>
 
 				<Section>
 					This is an extension!
-					{/* <TaskApp /> */}
+					<TaskApp />
 				</Section>
 			</div>
 		</>

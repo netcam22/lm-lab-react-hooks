@@ -49,3 +49,31 @@ input {
     align-items: center;
     margin-left: 10px;
 }
+
+.cat-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+    flex-flow: wrap;
+    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+  
+  .cat {
+    padding: 1%;
+    margin: 1%;
+    flex-grow: 1;
+    flex-basis: 18%;
+    position: sticky;
+    text-align: center;
+  }
+
+  .cat-image {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    max-height: 100%;
+  }

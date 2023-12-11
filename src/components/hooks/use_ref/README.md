@@ -10,7 +10,7 @@ In the `count_renders.tsx` file there is an input field which updates some state
 
 Hmm, so how could we count how many times, for example, the component itself gets rendered...?
 
-Theoretically, you could could make a `useEffect` fire on every render (by not giving it a dependency array). When the `useEffect` fires, you could then update some state to keep track of each render. However, the state changing wouild cause another render... which would fire the `useEffect` again... which would update the state... which would cause another re-render... which would update the state... You'd get stuck in an infinite loop! Ahhhhhhhhhhhhh. 🔁 😱
+Theoretically, you could could make a `useEffect` fire on every render (by not giving it a dependency array). When the `useEffect` fires, you could then update some state to keep track of each render. However, the state changing would cause another render... which would fire the `useEffect` again... which would update the state... which would cause another re-render... which would update the state... You'd get stuck in an infinite loop! Ahhhhhhhhhhhhh. 🔁 😱
 
 Your mission is to count how many times the `countRenders` component renders, WITHOUT getting stuck in an infinite loop!
 

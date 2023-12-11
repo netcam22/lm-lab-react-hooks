@@ -55,8 +55,6 @@ input[type="text"] {
   font-size: 1.2rem;
 }
 
-
-
 @media (prefers-color-scheme: dark) {
   :root {
     color: #e3eaf1;
