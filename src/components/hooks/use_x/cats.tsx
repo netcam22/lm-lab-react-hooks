@@ -1,12 +1,13 @@
 import {useFetch} from "./use_todo";
-
+import { CatImage } from "./cat-image";
+import { CatBreed } from "./cat-text";
 interface APICallProps {
     endPoint: string;
 }
-
 export interface CatResponse {
 	id: string;
 	url: string;
+	breeds: Array<CatBreed>
 }
 
 export const Cats:React.FC<APICallProps> = ({endPoint}) => {
@@ -20,11 +21,8 @@ export const Cats:React.FC<APICallProps> = ({endPoint}) => {
 		<div className = "cat-container">
 		{catData.data &&
         catData.data.map((cat) => {
-        return <CatImage key={cat.id} id={cat.id} url = {cat.url}/>
+        return <CatImage key={cat.id} id={cat.id} url = {cat.url} breeds = {cat.breeds}/>
         })} 
 		</div>
 		</>)
 }
-
-export const CatImage:React.FC<CatResponse> = ({url}) => 
-<div className = "cat"><img className = "cat-image" src = {url}/></div>;
