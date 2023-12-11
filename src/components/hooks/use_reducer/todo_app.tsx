@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { AddTask } from './add_task.js';
 import { TaskList } from './task_list.js';
 
@@ -14,47 +14,49 @@ const initialTasks: Task[] = [
 	{ id: 2, text: 'Lennon Wall pic', done: false },
 ];
 
+function reducer(tasks: Array<Task>, action: {type: string; id?: number; text?: string; task?:any}) {
+
+	switch (action.type) {
+		case 'add-task': {
+			return [...tasks, {id: action.id, text: action.text, done: false}];
+		}
+		case 'change-task': {
+			return tasks.map((task: Task) => {
+				return action.task.id === task.id? action.task: task;
+			});
+		}
+		case 'delete-task': {
+			return tasks.filter((task: Task) => task.id !== action.id);
+		}
+		default: {
+			throw Error('Action not valid: ' + action.type);
+		}
+	}
+}
+
 export function TaskApp() {
-	const [tasks, setTasks] = useState(initialTasks);
 
-	function handleAddTask(text: string) {
-		setTasks([
-			...tasks,
-			{
-				id: tasks.length,
-				text: text,
-				done: false,
-			},
-		]);
+	const [tasks, dispatch] = useReducer(reducer, initialTasks);
+	let currentId = initialTasks.length+1;
+
+	function handleAdd(text: string) {
+		dispatch({type: 'add-task', id: currentId+=1, text: text});
 	}
 
-	function handleChangeTask(updatedTask: Task) {
-		setTasks(
-			tasks.map((t) => {
-				if (t.id === updatedTask.id) {
-					return updatedTask;
-				} else {
-					return t;
-				}
-			})
-		);
+	function handleChange(task: Task) {
+		dispatch({type: 'change-task', task: task});
 	}
 
-	function handleDeleteTask(taskId: number) {
-		setTasks(tasks.filter((t) => t.id !== taskId));
+	function handleDelete(taskId: number) {
+		dispatch({type: 'delete-task', id: taskId});
 	}
-
+	
 	return (
-		<>
-			<h2>useReducer</h2>
-
-			<h3>Prague Itinerary</h3>
-			<AddTask onAddTask={handleAddTask} />
-			<TaskList
-				tasks={tasks}
-				onChangeTask={handleChangeTask}
-				onDeleteTask={handleDeleteTask}
-			/>
-		</>
+	<>
+		<h2>Use Reducer</h2>
+		<h3>Prague itinerary</h3>
+		<AddTask onAddTask={handleAdd} />
+		<TaskList tasks={tasks} onChangeTask={handleChange} onDeleteTask={handleDelete}/>
+	</>
 	);
 }
