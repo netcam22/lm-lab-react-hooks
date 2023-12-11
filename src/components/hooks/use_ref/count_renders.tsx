@@ -14,6 +14,7 @@ export const CountRenders = () => {
 		count.current = 0;
 	}
 
+	const renderCount = count.current;
 	return (
 		<>
 			<h2>useRef</h2>
@@ -25,7 +26,7 @@ export const CountRenders = () => {
 			/>
 
 			<p>{value}</p>
-			<p>I have rendered {count.current} times</p>
+			<p>I have rendered {renderCount} times</p>
 			<button onClick={resetCount}>Reset count</button>
 		</>
 	);
