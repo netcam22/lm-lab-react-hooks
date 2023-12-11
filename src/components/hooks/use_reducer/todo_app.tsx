@@ -8,39 +8,54 @@ export interface Task {
 	done: boolean;
 }
 
-const initialTasks: Task[] = [
+const initialTasks = [
 	{ id: 0, text: 'Visit Kafka Museum', done: true },
 	{ id: 1, text: 'Watch a puppet show', done: false },
 	{ id: 2, text: 'Lennon Wall pic', done: false },
 ];
 
-function reducer(tasks: Array<Task>, action: {type: string; id?: number; text?: string; task?:any}) {
+type Add = {
+	type: "add-task";
+	id: number;
+	text: string;
+}
+
+type Change = {
+	type: "change-task";
+	task: Task;
+}
+
+type Delete = {
+	type: "delete-task";
+	id: number;
+}
+
+type Action = Add | Change | Delete;
+
+function reducer(tasks: Array<Task>, action: Action): Array<Task> {
 
 	switch (action.type) {
 		case 'add-task': {
 			return [...tasks, {id: action.id, text: action.text, done: false}];
 		}
 		case 'change-task': {
-			return tasks.map((task: Task) => {
-				return action.task.id === task.id? action.task: task;
-			});
+			return tasks.map((task: Task) => action.task.id === task.id? action.task: task);
 		}
 		case 'delete-task': {
 			return tasks.filter((task: Task) => task.id !== action.id);
 		}
 		default: {
-			throw Error('Action not valid: ' + action.type);
+			throw Error('Action not valid');
 		}
 	}
-}
+}	
 
 export function TaskApp() {
 
 	const [tasks, dispatch] = useReducer(reducer, initialTasks);
-	let currentId = initialTasks.length+1;
 
 	function handleAdd(text: string) {
-		dispatch({type: 'add-task', id: currentId+=1, text: text});
+		dispatch({type: 'add-task', id: tasks.length+1, text: text});
 	}
 
 	function handleChange(task: Task) {
