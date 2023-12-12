@@ -1,12 +1,7 @@
-import { CatText, CatBreed } from "./cat-text";
+import { CatText} from "./cat-info";
+import { CatResponse } from "./cat-container";
 
-export interface CatResponse {
-	id: string;
-	url: string;
-	breeds: Array<CatBreed>
-}
-
-export const CatImage:React.FC<CatResponse> = ({url, breeds}) => 
+export const CatView:React.FC<CatResponse> = ({url, breeds}) => 
 <div className = "cat"><img alt = "" className = "cat-image" src = {url}/>
 {breeds.map((breed, index) => {
         return <CatText key={index.toString()} name = {breed.name} temperament= {breed.temperament} />

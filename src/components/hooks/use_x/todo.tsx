@@ -1,4 +1,4 @@
-import {useFetch} from "./use_todo";
+import {useFetch} from "./use_fetch";
 
 interface APICallProps {
     endPoint: string;

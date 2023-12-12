@@ -8,7 +8,7 @@ import { Focus } from './components/hooks/use_ref/focus';
 import { CountCats } from './components/hooks/use_state/count_cats';
 import { TaskApp } from './components/hooks/use_reducer/todo_app';
 import { Section } from './components/section';
-import { Cat } from './components/hooks/use_x/cat';
+import { CatContainer } from './components/hooks/use_x/cat-container';
 
 function App() {
 	return (
@@ -38,7 +38,7 @@ function App() {
 
 				<Section>
 					<Todo endPoint = "https://jsonplaceholder.typicode.com/todos/1"/>
-					<Cat endPoint = "https://api.thecatapi.com/v1/images/search?limit=16&has_breeds=1&api_key=live_7z9YrvTvX0vWxVWX3X4YlwaaLlPMavr2XgxFb9TuucYnRVzsORry3ScJo6W33Uft"/>
+					<CatContainer endPoint = "https://api.thecatapi.com/v1/images/search?limit=16&has_breeds=1&api_key=live_7z9YrvTvX0vWxVWX3X4YlwaaLlPMavr2XgxFb9TuucYnRVzsORry3ScJo6W33Uft"/>
 				</Section>
 
 				<Section>
