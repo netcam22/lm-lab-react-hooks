@@ -10,7 +10,7 @@ export interface CatResponse {
 	breeds: Array<CatBreed>
 }
 
-export const Cats:React.FC<APICallProps> = ({endPoint}) => {
+export const Cat:React.FC<APICallProps> = ({endPoint}) => {
 
 	const catData = useFetch<Array<CatResponse>>(endPoint);
 	return (<>
